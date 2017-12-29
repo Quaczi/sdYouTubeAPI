@@ -1,21 +1,9 @@
 <?php
-$gkey = "{TWOJ KLUCZ API}";
-
-
-
-$u2 = $_GET["user"];
-$user = $u2;
-$JSON = file_get_contents('https://www.googleapis.com/youtube/v3/channels?part=id%2Csnippet%2Cstatistics%2CcontentDetails%2CtopicDetails&forUsername='.$user.'&key'.$gkey);
+$value = $_GET['id'];
+$channelId = $value; 
+$maxResults =1; 
+$API_key = 'AIzaSyDCyepfe9p6fqQYHaGMiDQO1jy-gH37l8w'; 
+$JSON = file_get_contents('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$channelId.'&maxResults='.$maxResults.'&key='.$API_key.'');
 $json_data = json_decode($JSON, true);
-
-$id = NULL;
-$channel_id = $json_data['items'][0]['id'];
-
-$xml = simplexml_load_file(sprintf('https://www.youtube.com/feeds/videos.xml?channel_id=%s', $channel_id));
-
-if (!empty($xml->entry[0]->children('yt', true)->videoId[0])){
-    $id = $xml->entry[0]->children('yt', true)->videoId[0];
-}
-
-echo $id; // Outputs the video ID.
+echo $json_data['items'][0]['id']['videoId'];
 ?>

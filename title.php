@@ -1,9 +1,6 @@
 <?php
-$gkey = "{TWOJ KLUCZ API}";
-
-
 function get_youtube_title($video_id){
-    $html = 'https://www.googleapis.com/youtube/v3/videos?id='.$video_id.'&key'.$gkey.'&part=snippet';
+    $html = 'https://www.googleapis.com/youtube/v3/videos?id='.$video_id.'&key=AIzaSyDCyepfe9p6fqQYHaGMiDQO1jy-gH37l8w&part=snippet';
     $response = file_get_contents($html);
     $decoded = json_decode($response, true);
     foreach ($decoded['items'] as $items) {

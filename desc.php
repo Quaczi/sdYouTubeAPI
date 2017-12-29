@@ -1,15 +1,9 @@
 <?php
-$gkey = "{TWOJ KLUCZ API}";
-
-
-
-
-
-
 $value = $_GET['link'];
 $link = $value;
 $id = (str_replace("https://www.youtube.com/watch?v=","",$link));
 $vId = $id;
+$gkey = "AIzaSyDCyepfe9p6fqQYHaGMiDQO1jy-gH37l8w";
 
 $dur = file_get_contents("https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=".$vId."&key=".$gkey."");
 
